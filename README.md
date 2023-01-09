@@ -5,7 +5,7 @@ A mock-up cli script set of [R: The R Project for Statistical Computing](https:/
 - For use in UTF-8 Japanese environments on windows.
 - For my personal work and hobby use.
 - Note that the code is spaghetti (due to my technical inexperience).
-- Insufficient error handling
+- Insufficient tests and error handlings.
 
 script list:
 
@@ -14,7 +14,7 @@ script list:
 cat README.md | grep '^#### ' | grep -o '`[^`]+`' | sort | flat -ofs ", " | Set-Clipboard
 ```
 
-- `rcalc.R`, `rmatcalc.R`
+- `rcalc.R`, `rmatcalc.R`, `sketch.R`
 
 
 コード群にまとまりはないが、事務職（非技術職）な筆者の毎日の仕事（おもに文字列処理）を、より素早くさばくための道具としてのコマンドセットを想定している（毎日使用する関数は10個に満たないが）。
@@ -343,6 +343,39 @@ E 22 32
 E 18 28
 ```
 
+### Image processing
+
+#### `sketch.R` - A wrapper script of "sketcher" library
+
+- Usage
+    - man: `Rscript sketch.R [-h]`
+    - `Rscript sketch.R -i a.png [--debug] [[param] [param] ... [param]]`
+        - `--input, -i  :An input image`
+        - `--style      :Sketch style: 1 or 2, defalut: 1`
+        - `--lineweight :Strength of lines: >=0.3, default: 1`
+        - `--smooth     :Smoothness of texture: >=0, default: 1`
+        - `--gain,      :Gain parameter: betw 0 and 1, default: 0.02`
+        - `--contrast   :Contrast parameter: >=0, default: 20(for style1) or 4(for style2)`
+        - `--shadow     :Shadow threshold: betw 0 and 1, defalut 0.0`
+        - `--maxsize    :Max resolution of output: >0, default: 2048`
+        - `--output, -o :output file, default: NA`
+        - `--debug      :print debug, default: FALSE`
+- Dependency
+    - require: `optparse`, `sketcher`
+
+Examples:
+
+```powershell
+# Case1: Outline is missing and texture is lacking
+Rscript sketch.R -i a.png --style 2 --shadow 0.4
+
+# Case2: Due to the lack of edges in the dark region of the face
+Rscript sketch.R -i a.png --shadow 0.4
+
+# Case3: Neko. objects have unclear edges/outlines
+Rscript sketch.R -i a.png --smooth 0
+```
+
 ## CREDITS
 
 ### `rmatcalc.R`
@@ -356,4 +389,14 @@ E 18 28
         - <https://multivariate-statistics.com/2021/01/29/r-programming-vector-list/>
 - license:
     - MIT License: Copyright (c) 2020 UsagiSan
+
+### `sketch.R`
+
+- used library:
+    - `sketcher`
+- from:
+    - GitHub - <https://github.com/tsuda16k/sketcher>
+    - Blog - <https://htsuda.net/sketcher/>
+- license:
+    - MIT License: Copyright (c) 2020 Hiroyuki Tsuda
 
