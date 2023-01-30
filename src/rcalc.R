@@ -6,7 +6,6 @@
 # load file
 #install.packages("optparse", dependencies = T)
 #install.packages("Rtools", dependencies = T)
-#install.packages("sketcher", dependencies = T)
 suppressWarnings(library('optparse'))
 
 # check opt
@@ -49,11 +48,15 @@ if ( is.na(argv[1])){
     cat("cat iris.csv | Rscript rcalc.R -f 'summary(df)' -d ',' -l ggplot2,optparse", "\n", sep="")
     cat("echo 1 | Rscript rcalc.R -f 'iris %>% group_by(Species) %>% summarise(mean = mean(Petal.Length))' -d ',' -l dplyr", "\n", sep="")
     cat("", "\n", sep="")
+    cat("# install libraries", "\n", sep="")
+    cat("Rscript -e 'install.packages(\"palmerpenguins\", repos=\"https://cran.r-project.org/\")'", "\n", sep="")
+    cat("echo 1 | Rscript rcalc.R -f 'install.packages(\"palmerpenguins\", repos=\"https://cran.r-project.org/\")'", "\n", sep="")
+    cat("", "\n", sep="")
     cat("# output package startup message (-m | --message)", "\n", sep="")
     cat("echo 1 | Rscript rcalc.R -f 'letters' -l tidyverse -m", "\n", sep="")
     cat("", "\n", sep="")
     cat("# output csv", "\n", sep="")
-    cat("cat iris.csv | Rscript rcalc.R -f 'summary(df);write.csv(df,'',quote=FALSE)' -d ','", "\n", sep="")
+    cat("cat iris.csv | Rscript rcalc.R -f 'summary(df);write.csv(df,\"\",quote=FALSE)' -d ','", "\n", sep="")
     cat("", "\n", sep="")
     cat("# plot", "\n", sep="")
     cat("cat iris.csv | Rscript rcalc.R -f 'plot(df)' -d ',' --plot", "\n", sep="")
@@ -73,10 +76,10 @@ if ( is.na(argv[1])){
     cat("    dev.off()", "\n", sep="")
     cat("", "\n", sep="")
     cat("## ggplot2 another example: histogram", "\n", sep="")
-    cat("cat iris.csv | Rscript rcalc.R -d ',' -f \"p <- ggplot(iris)+geom_histogram(aes(Petal.Length, fill=Species), binwidth=0.5)+facet_wrap(~Species);print(p)\" -l ggplot2 --plot", "\n", sep="")
+    cat("echo 1 | Rscript rcalc.R -d ',' -f \"p <- ggplot(iris)+geom_histogram(aes(Petal.Length, fill=Species), binwidth=0.5)+facet_wrap(~Species);print(p)\" -l ggplot2 --plot", "\n", sep="")
     cat("", "\n", sep="")
     cat("## ggplot2 another example: histogram using gghighlight", "\n", sep="")
-    cat("cat iris.csv | Rscript rcalc.R -d ',' -f \"p <- ggplot(iris)+geom_histogram(aes(Petal.Length, fill = Species), binwidth = 0.5)+gghighlight()+facet_wrap(~ Species);print(p)\" -l ggplot2,gghighlight --plot", "\n", sep="")
+    cat("echo 1 | Rscript rcalc.R -d ',' -f \"p <- ggplot(iris)+geom_histogram(aes(Petal.Length, fill = Species), binwidth = 0.5)+gghighlight()+facet_wrap(~ Species);print(p)\" -l ggplot2,gghighlight --plot", "\n", sep="")
     cat("", "\n", sep="")
     cat("## ggplot2 another example: geom_point using gghighlight", "\n", sep="")
     cat("cat iris.csv | Rscript rcalc.R -d ',' -f \"p <- ggplot(data=df,mapping=aes(x=sepal_length,y=sepal_width,colour=species))+geom_point()+gghighlight(grepl('^v',species));print(p)\" -l ggplot2,gghighlight --plot", "\n", sep="")
@@ -92,9 +95,12 @@ if ( is.na(argv[1])){
     cat("", "\n", sep="")
     cat("", "\n", sep="")
     cat("# eval external R source file", "\n", sep="")
+    cat("# install.packages('palmerpenguins', repos='https://cran.r-project.org/')", "\n", sep="")
+    cat("# from: https://allisonhorst.github.io/palmerpenguins/", "\n", sep="")
+    cat("echo 1 | Rscript rcalc.R -f 'install.packages(\"palmerpenguins\", repos=\"https://cran.r-project.org/\")'", "\n", sep="")
+    cat("", "\n", sep="")
     cat("echo 1 | Rscript rcalc.R -f a.R -l 'palmerpenguins,ggplot2' --plot", "\n", sep="")
     cat("         Rscript rcalc.R -f a.R -l 'palmerpenguins,ggplot2' --plot -i penguins.csv -d ','", "\n", sep="")
-    cat("", "\n", sep="")
     cat("", "\n", sep="")
     cat("## palmer penguins by allison horst", "\n", sep="")
     cat("echo 1 | Rscript rcalc.R -f 'penguins %>% count(species)' -l 'palmerpenguins,tidyverse'", "\n", sep="")
@@ -238,8 +244,8 @@ import_libraries <- function (libstr){
         pre <- ""
         suc <- ')'
     }else{
-        pre <- "suppressPackageStartupMessages("
-        suc <- '))'
+        pre <- "invisible(suppressPackageStartupMessages("
+        suc <- ')))'
     }
     eval(parse(text=paste0(
         pre,
