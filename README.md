@@ -119,16 +119,20 @@ echo 1 | Rscript rcalc.R -f 'letters'
 # import libraries
 cat iris.csv | Rscript rcalc.R -f 'summary(df)' -d ',' -l ggplot2,optparse
 echo 1 | Rscript rcalc.R -f 'iris %>% group_by(Species) %>% summarise(mean = mean(Petal.Length))' -d ',' -l dplyr
+
+# install libraries
+Rscript -e 'install.packages("palmerpenguins", repos="https://cran.r-project.org/")'
+echo 1 | Rscript rcalc.R -f 'install.packages("palmerpenguins", repos="https://cran.r-project.org/")'
 ```
 
 ```powershell
-# output package startup message (-m | --message)
+# output package startup message (-m|--message)
 echo 1 | Rscript rcalc.R -f 'letters' -l tidyverse -m
 ```
 
 ```powershell
 # output csv
-cat iris.csv | Rscript rcalc.R -f 'summary(df);write.csv(df,'',quote=FALSE)' -d ','
+cat iris.csv | Rscript rcalc.R -f 'summary(df);write.csv(df,"",quote=FALSE)' -d ','
 ```
 
 ```powershell
@@ -177,6 +181,12 @@ cat iris.csv | Rscript rcalc.R -f 'hist(df$sepal_length)' -d ',' -o a.eps
 
 ```powershell
 # eval external R source file
+
+# install.packages("palmerpenguins")
+# from: https://allisonhorst.github.io/palmerpenguins/
+echo 1 | Rscript rcalc.R -f 'install.packages("palmerpenguins", repos="https://cran.r-project.org/")'
+
+# eval palmerpenguins
 echo 1 | Rscript rcalc.R -f a.R -l 'palmerpenguins,ggplot2' --plot
          Rscript rcalc.R -f a.R -l 'palmerpenguins,ggplot2' --plot -i penguins.csv -d ','
 ```
@@ -209,7 +219,7 @@ Warning message:
 Removed 2 rows containing non-finite values (stat_bin).
 ```
 
-## Math
+### Math
 
 #### `rmatcalc.R` - Cli matrix calculator by connecting with pipes
 
