@@ -42,7 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[unreleased]: https://github.com/btklab/posh-mocks/compare/1.0.0..HEAD
-[1.0.0]: https://github.com/btklab/posh-mocks/releases/tag/1.0.0
-[0.1.0]: https://github.com/btklab/posh-mocks/releases/tag/0.1.0
+[unreleased]: https://github.com/btklab/rlang-mocks/compare/1.0.0..HEAD
+[1.0.0]: https://github.com/btklab/rlang-mocks/releases/tag/1.0.0
+[0.1.0]: https://github.com/btklab/rlang-mocks/releases/tag/0.1.0
 
