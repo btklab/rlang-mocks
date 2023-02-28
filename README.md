@@ -11,13 +11,13 @@ script list:
 
 ```powershell
 # one-liner to create function list
-cat README.md | grep '^#### ' | grep -o '`[^`]+`' | sort | flat -ofs ", " | Set-Clipboard
+(cat README.md | sls '^#### \[[^[]+\]').Matches.Value.Replace('#### ','') -join ", " | Set-Clipboard
 ```
 
-- `rcalc.R`, `rmatcalc.R`, `sketch.R`
+- [rcalc.R], [rmatcalc.R], [sketch.R]
 
 
-コード群にまとまりはないが、事務職（非技術職）な筆者の毎日の仕事（おもに文字列処理）を、より素早くさばくための道具としてのコマンドセットを想定している（毎日使用する関数は10個に満たないが）。
+コード群にまとまりはないが、事務職（非技術職）な筆者の毎日の仕事（おもに文字列処理）を、より素早くさばくための道具としてのコマンドセットを想定している（毎日使用する関数は1個に満たないが）。
 
 基本的に入力としてUTF-8で半角スペース区切り、行指向の文字列データ（テキストオブジェクト）を期待する、主にパターンマッチング処理を行うためのフィルタ群。Windows上でしか動かない関数も、ある。
 
@@ -32,7 +32,7 @@ cat README.md | grep '^#### ' | grep -o '`[^`]+`' | sort | flat -ofs ", " | Set-
 2. Set terminal input/output encoding to `UTF-8`
     - The functions expect `UTF-8` encoded input, so if you want to run them on PowerShell in a Japanese environment, make sure the encoding is ready in advance.
     - if you use PowerShell, run the following dot sourcing command
-        - `. path/to/rscript-mocks/operator.ps1`
+        - `. path/to/rlang-mocks/operator.ps1`
 
 関数群はUTF-8エンコードされた入力を期待するので、
 関数実行前にカレントプロセスのエンコードを`UTF-8`にしておくとよい。
@@ -64,7 +64,9 @@ None
 
 ### Multipurpose
 
-#### `rcalc.R` - Cli rscript executer
+#### [rcalc.R] - Cli rscript executer
+
+[rcalc.R]: src/rcalc.R
 
 - Usage
     - man: `Rscript rcalc.R [-h]`
@@ -221,7 +223,9 @@ Removed 2 rows containing non-finite values (stat_bin).
 
 ### Math
 
-#### `rmatcalc.R` - Cli matrix calculator by connecting with pipes
+#### [rmatcalc.R] - Cli matrix calculator by connecting with pipes
+
+[rmatcalc.R]: src/rmatcalc.R
 
 - Usage
     - man: `Rscript rmatcalc.R [-h]`
@@ -355,7 +359,9 @@ E 18 28
 
 ### Image processing
 
-#### `sketch.R` - A wrapper script of "sketcher" library
+#### [sketch.R] - A wrapper script of "sketcher" library
+
+[sketch.R]: src/sketch.R
 
 - Usage
     - man: `Rscript sketch.R [-h]`
@@ -388,7 +394,7 @@ Rscript sketch.R -i a.png --smooth 0
 
 ## CREDITS
 
-### `rmatcalc.R`
+### [rmatcalc.R]
 
 - used functions:
     - `getIndex`, `append_VecOrList`, `extend_VecOrList`, `remove_vecOrList`, `insert_VecOrList`, `pop_VecOrList`, `getCount`
@@ -400,7 +406,7 @@ Rscript sketch.R -i a.png --smooth 0
 - license:
     - MIT License: Copyright (c) 2020 UsagiSan
 
-### `sketch.R`
+### [sketch.R]
 
 - used library:
     - `sketcher`
