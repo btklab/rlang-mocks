@@ -1,0 +1,23 @@
+name: Test PowerShell on Ubuntu-Latest
+on: push
+
+jobs:
+  pester-test:
+    name: Pester test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.2' # The R version to download (if necessary) and use.
+      - name: Get R version
+        run: Rscript --version
+      - name: Install dependencies
+        run: |
+          Rscript -e "install.packages(c('optparse'), dependencies = TRUE)"
+      - name: Perform a Pester test from the Tests.ps1 file
+        shell: pwsh
+        run: |
+          Invoke-Pester tests/*.Tests.ps1 -Passthru
