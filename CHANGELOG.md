@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- None
+- Added Pester tests for [rmatcalc.R]
 
 
 ## [1.0.0] - 2023-02-28
