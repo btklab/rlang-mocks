@@ -16,11 +16,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - None
 
 
-## [1.0.1]
+## [1.0.2]
 
 ### Changed
 
-- Update: [README.md]
+- Updated [README.md]
+
+### Added
+
+- Added [rcalc.R] examples
+
+
+## [1.0.1]
+
 
 ### Added
 
@@ -53,8 +61,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[unreleased]: https://github.com/btklab/rlang-mocks/compare/1.0.1..HEAD
-[1.0.]: https://github.com/btklab/rlang-mocks/releases/tag/1.0.1
+[unreleased]: https://github.com/btklab/rlang-mocks/compare/1.0.2..HEAD
+[1.0.2]: https://github.com/btklab/rlang-mocks/releases/tag/1.0.2
+[1.0.1]: https://github.com/btklab/rlang-mocks/releases/tag/1.0.1
 [1.0.0]: https://github.com/btklab/rlang-mocks/releases/tag/1.0.0
 [0.1.0]: https://github.com/btklab/rlang-mocks/releases/tag/0.1.0
 
