@@ -131,6 +131,10 @@ if ( is.na(argv[1])){
     cat("Removed 2 rows containing non-finite values (stat_bin).", "\n", sep="")
     cat("", "\n", sep="")
     cat("", "\n", sep="")
+    cat("## pair plot using ggplot2 and GGally", "\n", sep="")
+    cat("cat possum.csv | Rscript rcalc.R -f 'library(ggplot2);library(GGally);print(ggpairs(df))' -d ',' --plot", "\n", sep="")
+    cat("", "\n", sep="")
+    cat("", "\n", sep="")
     quit(status=1)
 }
 
