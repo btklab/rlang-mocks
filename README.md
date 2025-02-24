@@ -1,5 +1,9 @@
 # rlang-mocks
 
+**This repository has been archived**. Future script updates will be posted in the following repository:
+
+- [GitHub - btklab/r-sketches](https://github.com/btklab/r-sketches)
+
 A mock-up cli script set of [R: The R Project for Statistical Computing](https://www.r-project.org/) that filter text-object input from the pipeline(stdin) and return text-object.
 
 - For use in UTF-8 Japanese environments on windows.
